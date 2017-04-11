@@ -1,21 +1,14 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
   <head>
-    <link rel="stylesheet" href="https://openlayers.org/en/v4.0.1/css/ol.css" type="text/css">
-	<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Device Properties Example</title>
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <script src="https://openlayers.org/en/v4.0.1/build/ol.js" type="text/javascript"></script>
-	<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <title>OpenLayers example</title>
-  </head>
-  <body>
-    <h1>Mobile map with OpenLayers</h1> 
-		<p id="geolocation">Finding geolocation...</p>
-    <script>			
-		// Wait for Cordova to load       
+    <script type="text/javascript" charset="utf-8" src="cordova-2.0.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for Cordova to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
 
     // Cordova is ready
     //
@@ -43,6 +36,10 @@
         alert('code: '    + error.code    + '\n' +
               'message: ' + error.message + '\n');
     }
+
     </script>
+  </head>
+  <body>
+    <p id="geolocation">Finding geolocation...</p>
   </body>
 </html>
