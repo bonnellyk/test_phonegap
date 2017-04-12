@@ -1,47 +1,195 @@
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="https://openlayers.org/en/v4.0.1/css/ol.css" type="text/css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-	  
-		<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<meta charset="utf-8">
-	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-	<title>Get started with SceneView - Create a 3D map</title>
-	<link rel="stylesheet" href="https://js.arcgis.com/4.3/esri/css/main.css">
-	<script src="https://js.arcgis.com/4.3/"></script>
-	<style>
-	  html, body, #viewDiv {
-		padding: 0;
-		margin: 0;
-		height: 100%;
-		width: 100%;
-	  }
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">	  
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>		
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+	<title>ESRI 3D Maps</title>	
+	<style>	  
+	  html,
+		body,
+		#viewDiv {
+		  padding: 0;
+		  margin: 0;
+		  height: 100%;
+		  width: 100%;
+		}
+		
+		#layerToggle {
+		  top: 20px;
+		  right: 20px;
+		  position: absolute;
+		  z-index: 99;
+		  background-color: white;
+		  border-radius: 8px;
+		  padding: 10px;
+		  opacity: 0.75;
+		}
 	</style>
   </head>
-  <body>
-    <h1>3D Map with ESRI</h1>
-    <div id="viewDiv" class=""></div>
+  <body class="calcite">
+  <div id="viewDiv"></div>
+</body>
+  
+  <script src="https://js.arcgis.com/4.3/"></script>
+
     <script>
-      require([
-		  "esri/Map",
-		  "esri/views/SceneView",
-		  "dojo/domReady!"
-		], function(Map, SceneView) {
-		  var map = new Map({
-			basemap: "streets",
-			ground: "world-elevation"
-		  });
-		  var view = new SceneView({
-			container: "viewDiv",  // Reference to the DOM node that will contain the view
-			map: map  // References the map object created in step 3
-		  });
-		});
-		
-    </script>
-  </body>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/layers/GroupLayer",
+      "esri/layers/MapImageLayer",
+      "esri/widgets/LayerList",
+      "dojo/domReady!"
+    ], function(
+      Map, MapView, GroupLayer, MapImageLayer, LayerList
+    ) {
+
+      // Create layer showing household income.
+
+      var householdIncomeLayer = new MapImageLayer({
+        url: "http://server.arcgisonline.com/arcgis/rest/services/Demographics/USA_Median_Household_Income/MapServer",
+        title: "US Median Household Income"
+      });
+
+      // Create layer showing median net worth. 
+      // Set visibility to false so it's not visible on startup.
+
+      var medianNetWorthLayer = new MapImageLayer({
+        url: "http://server.arcgisonline.com/arcgis/rest/services/Demographics/USA_Median_Net_Worth/MapServer",
+        title: "US Median Net Worth",
+        visibility: false
+      });
+
+      // Create GroupLayer with the two MapImageLayers created above
+      // as children layers.
+
+      var demographicGroupLayer = new GroupLayer({
+        title: "US Demographics",
+        visibility: true,
+        visibilityMode: "exclusive",
+        layers: [householdIncomeLayer, medianNetWorthLayer],
+        opacity: 0.75
+      });
+
+      // Create a map and add the group layer to it
+
+      var map = new Map({
+        basemap: "dark-gray",
+        layers: [demographicGroupLayer]
+      });
+
+      // Add the map to a MapView
+
+      var view = new MapView({
+        center: [-98.5795, 39.8282],
+        zoom: 5,
+        container: "viewDiv",
+        map: map
+      });
+
+      // Creates actions in the LayerList. 
+      // This function must return an array of action objects.
+
+      function defineActions(event) {
+
+        // The event object contains properties of the
+        // layer in the LayerList widget.
+
+        var item = event.item;
+
+        // Return the following actions for the GroupLayer.
+
+        if (item.title === "US Demographics") {
+
+          // An array of objects defining actions to place in the LayerList.
+          // By making this array two-dimensional, you can separate similar
+          // actions into separate groups with a breaking line.
+
+          return [
+            [{
+              title: "Go to full extent",
+              className: "esri-icon-zoom-out-fixed",
+              id: "full-extent"
+            }, {
+              title: "Layer information",
+              className: "esri-icon-description",
+              id: "information"
+            }],
+            [{
+              title: "Increase opacity",
+              className: "esri-icon-up",
+              id: "increase-opacity"
+            }, {
+              title: "Decrease opacity",
+              className: "esri-icon-down",
+              id: "decrease-opacity"
+            }]
+          ];
+        }
+      }
+
+      view.then(function() {
+
+        // Create the LayerList widget with the associated actions
+        // and add it to the top-right corner of the view.
+
+        var layerList = new LayerList({
+          view: view,
+          // executes the defineActions() function
+          createActionsFunction: defineActions
+        });
+
+        // Event listener that fires each time an action is triggered
+
+        layerList.on("trigger-action", function(event) {
+
+          // The layer visible in the view at the time of the trigger.
+          var visibleLayer = householdIncomeLayer.visible ?
+            householdIncomeLayer : medianNetWorthLayer;
+
+          // Capture the action id.
+          var id = event.action.id;
+
+          if (id === "full-extent") {
+
+            // if the full-extent action is triggered then navigate
+            // to the full extent of the visible layer
+            view.goTo(visibleLayer.fullExtent);
+
+          } else if (id === "information") {
+
+            // if the information action is triggered, then
+            // open the item details page of the service layer
+            window.open(visibleLayer.url);
+
+          } else if (id === "increase-opacity") {
+
+            // if the increase-opacity action is triggered, then
+            // increase the opacity of the GroupLayer by 0.25
+
+            if (demographicGroupLayer.opacity < 1) {
+              demographicGroupLayer.opacity += 0.25;
+            }
+          } else if (id === "decrease-opacity") {
+
+            // if the decrease-opacity action is triggered, then
+            // decrease the opacity of the GroupLayer by 0.25
+
+            if (demographicGroupLayer.opacity > 0) {
+              demographicGroupLayer.opacity -= 0.25;
+            }
+          }
+        });
+
+        // Add widget to the top right corner of the view
+        view.ui.add(layerList, "top-right");
+      });
+    });
+  </script>
 </html>

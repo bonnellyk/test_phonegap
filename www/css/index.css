@@ -117,3 +117,11 @@ h1 {
 .homeButton {
 	width: 100%;
 }
+
+#myfooter {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+}
