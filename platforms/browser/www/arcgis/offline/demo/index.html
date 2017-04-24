@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="shortcut icon" href="../images/favicon.ico">-->
+
+    <title>ArgGIS Offline</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .voffset20px {padding-top: 20px;}
+    </style>
+</head>
+
+<body>
+
+<header id="header">Offline ArcGIS</header>
+
+<div class="container">
+    <div class="bs-docs-section">
+        <h1 id="examples" class="page-header">Advanced Apps</h1>        
+        <div class="row bs-examples">
+            <div class="col-xs-4 col-md-4">
+                <a class="thumbnail" href="../samples/simple-tiles.html">
+                    <img src="images/tiles-demo-thumb.png">
+                </a>
+                <h3>Tiles Only</h3>                
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <a class="thumbnail" href="../samples/draw-pointlinepoly-offline.html">
+                    <img src="images/cop-demo-thumb.png">
+                </a>
+                <h3>Feature Editing</h3>                
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <a class="thumbnail" href="../samples/attachments-editor.html">
+                    <img src="images/attachments-demo-thumb.png">
+                </a>
+                <h3>Attachments</h3>                
+            </div>
+        </div>
+        <div class="row bs-examples voffset20px">
+            <div class="col-xs-4 col-md-4">
+                <a class="thumbnail" href="../samples/tpk-layer.html">
+                    <img src="images/tpk-demo-thumb.png">
+                </a>
+                <h3>TPK Only</h3>                
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <a class="thumbnail" href="../samples/appcache-features.html">
+                    <img src="images/appcachefeatures-demo-thumb.png">
+                </a>
+                <h3>AppCache Features and Tiles</h3>                
+            </div>
+            <div class="col-xs-4 col-md-4">
+                <a class="thumbnail" href="../samples/appcache-tiles.html">
+                    <img src="images/appcachetiles-demo-thumb.png">
+                </a>
+                <h3>AppCache Tiles Only</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#header").load("../demo/header.html");
+    });
+</script>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</body>
+</html>
