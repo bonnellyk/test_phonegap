@@ -47,36 +47,73 @@ body {
 
 /* Portrait layout (default) */
 .app {
-    background:url(../img/mainpage.png) no-repeat center top; /* 170px x 200px */
-    position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:40%;
-    height:50px;                   /* text area height */
-    width:225px;                   /* text area width */
-    text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
+    position:relative;             /* position in the center of the screen */  
+    text-align:center;        
+}
+
+.headerHome {
+	align:center;
+	padding-top:10%;
+}
+
+.buttonHomeContainer {
+	padding-left:10%;
+	padding-right:10%;
+	padding-bottom:5%;
+}
+
+.homeButton, .homeButton2 {
+	width:100%;
+	margin-bottom:2%;
+}
+
+.fullbtn {
+	width:80%;	
 }
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .app {
-        background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+        background-position:center;
+        text-align:center;
                                       /* offset horizontal: half of image width and text area width */
     }
+	
+	.headerHome {
+		align:center;
+		padding-top:2%;
+	}
+
+	.buttonHomeContainer {
+		padding-left:10%;
+		padding-right:10%;
+		padding-bottom:5%;
+	}
+	
+	.homeButton {
+		width:48%;
+		float:left;
+		margin-top:1%;
+		margin-right:1%;
+		margin-left:1%;
+		margin-bottom:1%;
+	}
+	.homeButton2 {
+		width:98%;
+		float:left;
+		margin-top:1%;
+		margin-right:1%;
+		margin-left:1%;
+		margin-bottom:1%;
+	}
+	
+	.fullbtn {
+		width:100%;
+	}
+	
 }
 
-h1 {
-    font-size:24px;
-    font-weight:normal;
-    margin:0px;
-    overflow:visible;
-    padding:0px;
-    text-align:center;
-}
+
 
 .event {
     border-radius:4px;
@@ -112,10 +149,6 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
-}
-
-.homeButton {
-	width: 100%;
 }
 
 #myfooter {

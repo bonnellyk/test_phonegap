@@ -9,19 +9,32 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 	
-	<title>GIS - Home</title>
+	<title>GIS - Phonegap POC</title>
 </head>
 
 <body>
     <div class="app">
-        <h1>Mobile GIS </h1>
+		<div>
+			<img src="../img/mainpage.png" class="headerHome">
+		</div>
+        <h1>Mobile GIS</h1>
         <div id="deviceready" class="">
-			<div class="row">
-				<button type="button" class="btn btn-primary btn-lg btn-block homeButton" onclick="document.location.href='map.html'">OpenLayers</button>		
-				<button type="button" class="btn btn-success btn-lg btn-block homeButton" onclick="document.location.href='map3dEsri.html'">3D ArcGIS</button>			
-				<button type="button" class="btn btn-primary btn-lg btn-block homeButton" onclick="document.location.href='testing.html'">Finding my position</button>			
-				<button type="button" class="btn btn-success btn-lg btn-block homeButton" onclick="document.location.href='arcgis.html'">ArcGIS JS API</button>			
-				<button type="button" class="btn btn-success btn-lg btn-block homeButton" onclick="document.location.href='test2.html'">Google API</button>			
+			<div class="buttonHomeContainer">
+				<div class="homeButton">
+					<button type="button" class="btn btn-primary btn-lg fullbtn" onclick="document.location.href='map.html'">OpenLayers</button>		
+				</div>
+				<div class="homeButton">
+					<button type="button" class="btn btn-success btn-lg fullbtn" onclick="document.location.href='map3dEsri.html'">3D ArcGIS</button>			
+				</div>
+				<div class="homeButton">
+					<button type="button" class="btn btn-primary btn-lg fullbtn" onclick="document.location.href='testing.html'">Finding my position</button>			
+				</div>
+				<div class="homeButton">
+					<button type="button" class="btn btn-success btn-lg fullbtn" onclick="document.location.href='arcgis.html'">ArcGIS JS API</button>			
+				</div>
+				<div class="homeButton2">
+					<button type="button" class="btn btn-primary btn-lg fullbtn" onclick="document.location.href='test2.html'">Google API</button>			
+				</div>
 			</div>			
         </div>
     </div>
