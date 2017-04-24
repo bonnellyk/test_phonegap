@@ -1,0 +1,57 @@
+<html>
+  <head>
+  <meta charset="utf-8" />
+  <!--
+    Customize this policy to fit your own app's needs. For more guidance, see:
+        https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+    Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+      * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' http://basemaps.arcgis.com http://js.arcgis.com http://server.arcgisonline.com http://services.arcgisonline.com http://static.arcgis.com http://www.arcgis.com https://basemaps.arcgis.com https://js.arcgis.com https://server.arcgisonline.com https://services.arcgisonline.com https://static.arcgis.com https://www.arcgis.com blob:; connect-src 'self' http://basemaps.arcgis.com http://js.arcgis.com http://server.arcgisonline.com http://services.arcgisonline.com http://static.arcgis.com http://www.arcgis.com https://basemaps.arcgis.com https://js.arcgis.com https://server.arcgisonline.com https://services.arcgisonline.com https://static.arcgis.com https://www.arcgis.com; font-src 'self' http://js.arcgis.com https://js.arcgis.com data:; style-src 'self' http://js.arcgis.com https://js.arcgis.com 'unsafe-inline'; script-src 'self' http://js.arcgis.com https://js.arcgis.com 'unsafe-eval';">
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="msapplication-tap-highlight" content="no" />
+  <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  <link rel="stylesheet" type="text/css" href="../css/index.css" />
+  <!--
+  Using the CDN:
+  Include the CDN ArcGIS API for JavaScript stylesheet
+  -->
+  <link rel="stylesheet" href="https://js.arcgis.com/3.20/esri/css/esri.css"/>
+  <title>PhoneGap Map</title>
+  <style>
+  /* Hide the default PhoneGap div */
+  .app {
+    display: none;
+  }
+  /* Set html, body height */
+  html, body {
+    height: 100%;
+  }
+  /* Set the map div height */
+  #map {
+    height: 100%;
+  }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <h1>PhoneGap</h1>
+    <div id="deviceready" class="blink">
+      <p class="event listening">Connecting to Device</p>
+      <p class="event received">Device is Ready!</p>
+    </div>
+  </div>
+  <div id="map"></div>
+  <!--
+  Using the CDN:
+  Include the CDN ArcGIS API for JavaScript library
+  -->
+  <script src="https://js.arcgis.com/3.20/"></script>
+  <script type="text/javascript" src="../cordova.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>
